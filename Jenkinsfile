@@ -1,28 +1,20 @@
 pipeline {
     agent any
 
-    environment {
-        // Define environment variables
-        MAVEN_HOME = tool 'Maven'
-        PATH = "$MAVEN_HOME/bin:${env.PATH}"
-        JAVA_HOME = tool 'Java17'
-    }
-
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                checkout scm
-                sh 'mvn clean package'
+                checkout([$class: 'GitSCM', branches: [[name: 'feature/sampleapp']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/Practice-jenkins.git']]])
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Build successful!'
+        stage('Build') {
+            steps {
+                script {
+                    sh 'mvn clean package'
+                }
+            }
         }
-        failure {
-            echo 'Build failed!'
-        }
-    }
+    }    
+
 }

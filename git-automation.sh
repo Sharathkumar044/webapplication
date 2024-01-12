@@ -6,7 +6,13 @@
 git add .
 
 # Run git commit with a specified commit message
-git commit -m "Your commit message here"
+echo -n "Enter your commit message: "
+read commit_message
+git commit -m "$commit_message"
 
-# Run git push
-git push origin feature-branch
+# Prompt the user for the branch name
+echo -n "Enter the branch name: "
+read branch_name
+
+# Run git push with the specified branch
+git push origin "$branch_name"

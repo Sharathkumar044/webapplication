@@ -33,6 +33,6 @@ pipeline {
         }
     }
     environment {
-        JAVA_HOME = '/path/to/your/java/home'
+        JAVA_HOME = '/usr/bin/java'
     }
 }

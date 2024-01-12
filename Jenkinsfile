@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh './mvnw clean install -DskipTests
-'
+
                 }
             }
         }  

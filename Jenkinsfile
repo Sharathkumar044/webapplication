@@ -7,6 +7,11 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'feature-helloworld']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/webapplication.git']]])
             }
         }
+        stage('Clean Target Directory') {
+            steps {
+                sh 'rm -rf target'
+            }
+        }
         stage('Set execute permissions') {
             steps {
                 script {
@@ -21,5 +26,8 @@ pipeline {
                 }
             }
         }
+    }
+    environment {
+        JAVA_HOME = '/path/to/your/java/home'
     }
 }

@@ -1,12 +1,18 @@
 pipeline {
     agent any
 
-        stage('Build') {
+    stages {
+        stage('Checkout') {
             steps {
-                // Build your Spring Boot application
-                sh './mvnw clean package'
+                checkout([$class: 'GitSCM', branches: [[name: 'feature-branch']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/webapplication.git']]])
             }
         }
-
+        stage('Build') {
+            steps {
+                script {
+                    sh 'mvn clean install'
+                }
+            }
+        }  
     }
 }

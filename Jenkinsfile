@@ -10,8 +10,8 @@ pipeline {
         stage('Clean Target Directory') {
             steps {
                 script {
-                    // Change ownership of the target directory
-                    sh 'sudo chown -R jenkins:jenkins target'
+                    // Change ownership of the target directory without sudo
+                    sh 'chown -R jenkins:jenkins target'
                     // Remove the target directory
                     sh 'rm -rf target'
                 }

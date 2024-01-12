@@ -9,7 +9,12 @@ pipeline {
         }
         stage('Clean Target Directory') {
             steps {
-                sh 'rm -rf target'
+                script {
+                    // Change ownership of the target directory
+                    sh 'sudo chown -R jenkins:jenkins target'
+                    // Remove the target directory
+                    sh 'rm -rf target'
+                }
             }
         }
         stage('Set execute permissions') {

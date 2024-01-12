@@ -4,14 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'feature-branch']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/webapplication.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'feature-helloworld']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/webapplication.git']]])
             }
         }
         stage('Build') {
             steps {
                 script {
-                    sh './mvnw clean install -DskipTests
-
+                    sh './mvnw clean install -DskipTests'
                 }
             }
         }  
